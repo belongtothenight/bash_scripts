@@ -14,7 +14,7 @@ declare -a python_app=(\
 	# "scikit-learn"\
 	"keras"\
 	"tensorflow"\
-	"torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117"\
+	"torch torchvision torchaudio"\
 	#"opencv-python"\
 	"wandb"\
 )
