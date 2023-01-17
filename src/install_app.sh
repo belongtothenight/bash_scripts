@@ -15,7 +15,7 @@ declare -a python_app=(\
 	"keras"\
 	"tensorflow"\
 	"torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117"\
-	"opencv-python"\
+	#"opencv-python"\
 	"wandb"\
 )
 
@@ -51,6 +51,10 @@ bg_cyan='\e[46m'
 bg_white='\e[47m'
 bg_NC='\e[0m'
 
+# screen size
+columns=$(tput cols)
+lines=$(tput lines)
+
 # find array index
 # index=0
 # function find_arr_index () {
@@ -80,10 +84,18 @@ cnt=0
 for i in "${app[@]}"
 do
     index=$((cnt+1))
-	line="${bg_yellow}Progress: $index / ${#app[@]} >> ${app[$cnt]}${bg_NC}\n"
+
+	line="${bg_yellow}Progress: $index / ${#app[@]} >> ${app[$cnt]}"
+	empty_space=$((columns-${#line}))
+	for ((j=0; j<empty_space; j++)) do
+		line+=" "
+	done
+	line+="${bg_NC}\n"
 	printf "$line"
-	echo -e "sudo apt install" "$i"
-	# printf -e "\rsudo apt install" "$i"
+
+	# echo -e "sudo apt install" "$i"
+	# printf "sudo apt install ${app[$cnt]}\n"
+	sudo apt install "${app[$cnt]}"
 	cnt=$((cnt+1))
 done
 
@@ -93,8 +105,16 @@ cnt=0
 for i in "${python_app[@]}"
 do
     index=$((cnt+1))
-	printf "\rProgress: $index / ${#python_app[@]} >> ${python_app[$cnt]}"
-	echo -e "python -m pip install" "$i"
-	# printf "\rpython -m pip install" "$i"
+
+	line="${bg_yellow}Progress: $index / ${#python_app[@]} >> ${python_app[$cnt]}"
+	empty_space=$((columns-${#line}))
+	for ((j=0; j<empty_space; j++)) do
+		line+=" "
+	done
+	line+="${bg_NC}\n"
+	printf "$line"
+	# echo -e "python -m pip install" "$i"
+	# printf "python -m pip install ${python_app[$cnt]}\n"
+	python -m pip install "${python_app[$cnt]}"
 	cnt=$((cnt+1))
 done
