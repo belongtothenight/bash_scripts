@@ -11,7 +11,7 @@ declare -a python_app=(\
 	"pandas"\
 	"matplotlib"\
 	"seaborn"\
-	"scikit-learn"\
+	# "scikit-learn"\
 	"keras"\
 	"tensorflow"\
 	"torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117"\
