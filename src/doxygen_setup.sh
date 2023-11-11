@@ -1,6 +1,6 @@
 apt-get update
 apt-get upgrade -y
-apt-get install -y gcc make cmake doxygen
+apt-get install -y gcc make cmake doxygen graphviz
 
 #Ref: https://github.com/jothepro/doxygen-awesome-css
 git clone git@github.com:jothepro/doxygen-awesome-css.git
