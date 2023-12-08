@@ -5,12 +5,15 @@
 # 2. https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 # 3. https://stackoverflow.com/questions/19576742/how-to-clone-all-repos-at-once-from-github
 
-#account="CYCU-AIoT-System-Lab"
-account="belongtothenight"
+function request () {
+	gh repo list $1 --limit 1000 | while read -r repo _; do
+	gh repo clone "$repo" "$repo"
+	done
+}
 
 cd ~/Documents/GitHub
+request "CYCU-AIoT-System-Lab"
+request "belongtothenight"
 
-gh repo list $account --limit 1000 | while read -r repo _; do
-  gh repo clone "$repo" "$repo"
-done
+
 
