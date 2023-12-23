@@ -12,5 +12,7 @@ do
 	echo "Tree level: $tree_level"
 	echo "${cnt}th run!"
 	tree -L $tree_level
+	echo -e "Total size: \r"
+	du . -h -s
 	sleep $delay
 done
