@@ -8,6 +8,8 @@ do
 	clear
 	cnt=$((cnt+1))
 	echo "Keep listing tree of current directory. (ctrl+c to quit)"
+	echo "Delay interval (sec): $delay"
+	echo "Tree level: $tree_level"
 	echo "${cnt}th run!"
 	tree -L $tree_level
 	sleep $delay
