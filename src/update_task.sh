@@ -2,7 +2,7 @@
 # This script will be run with systemd service
 # This process can be monitored with "${HOME}/Documents/list_dir.sh"
 # Ref: https://unix.stackexchange.com/questions/26728/prepending-a-timestamp-to-each-line-of-output-from-a-command
-log_file="${HOME}/Documents/update_log.txt"
+log_file="${HOME}/Documents/update_task.log"
 log_format="%Y/%m/%d-%H:%M:%S"
 msg_preappend=">>>"
 
