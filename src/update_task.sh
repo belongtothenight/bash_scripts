@@ -24,7 +24,7 @@ function esapo () {
 	$1 2>&1 | ts "[$log_format]" | tee -a $log_file
 }
 
-echo -e "\n\r" &>> $log_file
+echo -e "\r" &>> $log_file
 pmsg "update_task.sh started!"
 
 # Task 1 => Update System
@@ -35,7 +35,6 @@ epapo "sudo apt-get upgrade -y"
 
 # Task 2 => Clone all repos
 pmsg "Cloning all repos with clone_all_repo.sh"
-#${HOME}/Documents/clone_all_repo.sh &>> $log_file
 esapo "${HOME}/Documents/clone_all_repo.sh"
 
 # Task 3 => Update all repos
