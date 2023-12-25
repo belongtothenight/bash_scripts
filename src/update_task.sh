@@ -2,9 +2,12 @@
 # This script will be run with systemd service
 # This process can be monitored with "${HOME}/Documents/list_dir.sh"
 # Ref: https://unix.stackexchange.com/questions/26728/prepending-a-timestamp-to-each-line-of-output-from-a-command
+# Req: moreutils
 log_file="${HOME}/Documents/update_task.log"
 log_format="%Y/%m/%d-%H:%M:%S"
 msg_preappend=">>>"
+pkg_manager="nala" # default: apt-get
+pw_file="${HOME}/Documents/pw.txt"
 
 # pipe message
 function pmsg () {
@@ -28,17 +31,17 @@ echo -e "\r" &>> $log_file
 pmsg "update_task.sh started!"
 
 # Task 1 => Update System
-pmsg "Updating system"
-epapo "sudo apt-get update"
-pmsg "Upgrading system"
-epapo "sudo apt-get upgrade -y"
+#pmsg "Updating system"
+#epapo "${pkg_manager} update"
+#pmsg "Upgrading system"
+#epapo "${pkg_manager} upgrade -y"
 
 # Task 2 => Clone all repos
 pmsg "Cloning all repos with clone_all_repo.sh"
-esapo "${HOME}/Documents/clone_all_repo.sh"
+esapo "${HOME}/Documents/GitHub/clone_all_repo.sh"
 
 # Task 3 => Update all repos
 pmsg "Updating all repos with update_all_repo.sh"
-esapo "${HOME}/Documents/update_all_repo.sh"
+esapo "${HOME}/Documents/GitHub/update_all_repo.sh"
 
 pmsg "update_task.sh ended!"
