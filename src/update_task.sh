@@ -19,9 +19,9 @@ t0=1
 # --> update sys
 t1=0
 # --> clone repo
-t2=1
+t2=0
 # --> update repo
-t3=1
+t3=0
 # --> tree repo
 t4=1
 # --> size repo
@@ -135,9 +135,9 @@ fi
 # Task 4 => Print out repo tree
 if [ $t4 -eq $active ]; then
 	pmsgwp ""
-	pmsg "Task 4: Print out repo tree"
+	pmsg "Task 4: Print out repo tree, directory only"
 	pmsg "Printing local repo tree at ${repo_dir}"
-	epapo "tree ${repo_dir} -L 2"
+	epapo "tree ${repo_dir} -L 2 -d"
 fi
 
 # Task 5 => Get total repo size
