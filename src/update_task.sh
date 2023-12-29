@@ -19,9 +19,9 @@ t0=1
 # --> update sys
 t1=0
 # --> clone repo
-t2=0
+t2=1
 # --> update repo
-t3=0
+t3=1
 # --> tree repo
 t4=1
 # --> size repo
