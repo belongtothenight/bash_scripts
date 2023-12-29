@@ -3,6 +3,7 @@
 # This process can be monitored with "${HOME}/Documents/list_dir.sh"
 # Ref: https://unix.stackexchange.com/questions/26728/prepending-a-timestamp-to-each-line-of-output-from-a-command
 # Req: moreutils
+script_date="2023/12/30-01:11"
 
 # Settings
 base_dir="${HOME}/Documents"
@@ -13,12 +14,20 @@ msg_preappend=">>>"
 pkg_manager="nala" # default: apt-get
 
 # Tasks (1=Active)
+# --> show param
 t0=1
+# --> update sys
 t1=0
+# --> clone repo
 t2=1
+# --> update repo
 t3=1
+# --> tree repo
 t4=1
+# --> size repo
 t5=1
+# --> size disk
+t6=1
 
 active=1
 
@@ -51,6 +60,7 @@ pmsg "update_task.sh started!"
 # Task 0 => Parameters
 if [ $t0 -eq $active ]; then
 	pmsg "Task 0: List out parameters!"
+	pmsgwp "Script coded on $script_date"
 	pmsgwp "Settings ==="
 	pmsgwp "base_dir:       $base_dir"
 	pmsgwp "repo_dir:       $repo_dir"
@@ -89,6 +99,11 @@ if [ $t0 -eq $active ]; then
 	else
 		pmsgwp "Task 5: Deactivated"
 	fi
+	if [ $t6 -eq $active ]; then
+		pmsgwp "Task 6: Activated"
+	else
+		pmsgwp "Task 6: Deactivated"
+	fi
 fi
 
 # Task 1 => Update System
@@ -126,6 +141,13 @@ if [ $t5 -eq $active ]; then
 	pmsg "Task 5: Get total repo size"
 	pmsg "Getting total repo size locally at ${repo_dir}"
 	epapo "du ${repo_dir} -h -s"
+fi
+
+# Task 6 => Get system available disk size
+if [ $t6 -eq $active ]; then
+	pmsg "Task 6: Get available system disk size"
+	pmsg "Getting system disk usage"
+	epapo "df -h -x tmpfs"
 fi
 
 pmsg "update_task.sh ended!"
