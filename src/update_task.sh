@@ -108,6 +108,7 @@ fi
 
 # Task 1 => Update System
 if [ $t1 -eq $active ]; then
+	pmsgwp ""
 	pmsg "Task 1: Update system"
 	pmsg "Updating system"
 	epapo "${pkg_manager} update"
@@ -117,6 +118,7 @@ fi
 
 # Task 2 => Clone all repos
 if [ $t2 -eq $active ]; then
+	pmsgwp ""
 	pmsg "Task 2: Clone all repos"
 	pmsg "Cloning all repos with clone_all_repo.sh"
 	esapo "${repo_dir}/clone_all_repo.sh"
@@ -124,6 +126,7 @@ fi
 
 # Task 3 => Update all repos
 if [ $t3 -eq $active ]; then
+	pmsgwp ""
 	pmsg "Task 3: Update all repos"
 	pmsg "Updating all repos with update_all_repo.sh"
 	esapo "${repo_dir}/update_all_repo.sh"
@@ -131,6 +134,7 @@ fi
 
 # Task 4 => Print out repo tree
 if [ $t4 -eq $active ]; then
+	pmsgwp ""
 	pmsg "Task 4: Print out repo tree"
 	pmsg "Printing local repo tree at ${repo_dir}"
 	epapo "tree ${repo_dir} -L 2"
@@ -138,6 +142,7 @@ fi
 
 # Task 5 => Get total repo size
 if [ $t5 -eq $active ]; then
+	pmsgwp ""
 	pmsg "Task 5: Get total repo size"
 	pmsg "Getting total repo size locally at ${repo_dir}"
 	epapo "du ${repo_dir} -h -s"
@@ -145,6 +150,7 @@ fi
 
 # Task 6 => Get system available disk size
 if [ $t6 -eq $active ]; then
+	pmsgwp ""
 	pmsg "Task 6: Get available system disk size"
 	pmsg "Getting system disk usage"
 	epapo "df -h -x tmpfs"
