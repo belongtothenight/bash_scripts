@@ -28,6 +28,8 @@ t4=1
 t5=1
 # --> size disk
 t6=1
+# --> size log
+t7=1
 
 active=1
 
@@ -104,6 +106,11 @@ if [ $t0 -eq $active ]; then
 	else
 		pmsgwp "Task 6: Deactivated"
 	fi
+	if [ $t7 -eq $active ]; then
+		pmsgwp "Task 7: Activated"
+	else
+		pmsgwp "Task 7: Deactivated"
+	fi
 fi
 
 # Task 1 => Update System
@@ -154,6 +161,15 @@ if [ $t6 -eq $active ]; then
 	pmsg "Task 6: Get available system disk size"
 	pmsg "Getting system disk usage"
 	epapo "df -h -x tmpfs"
+fi
+
+log_file
+# Task 7 => Get log size
+if [ $t7 -eq $active ]; then
+	pmsgwp ""
+	pmsg "Task 7: Get log file size"
+	pmsg "Getting log file size at $log_file"
+	epapo "du $log_file -h"
 fi
 
 pmsg "update_task.sh ended!"
