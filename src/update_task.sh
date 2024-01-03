@@ -34,17 +34,17 @@ t7=1
 active=1
 
 # pipe message
-function pmsg () {
+pmsg () {
 	echo -e "[$(date +${log_format})] ${msg_preappend} $1" &>> $log_file
 }
 
 # pipe message without preappending
-function pmsgwp () {
+pmsgwp () {
 	echo -e "[$(date +${log_format})] $1" &>> $log_file
 }
 
 # execute program and pipe output
-function epapo () {
+epapo () {
 	# Method 1: don't use with commmand that taks a long time to execute
 	#$1 | awk -v log_format=${log_format} '{print strftime("["log_format"]"), $0}' &>> $log_file
 	# Method 2: sudo apt-get install moreutils
@@ -52,7 +52,7 @@ function epapo () {
 }
 
 # execute shell and pipe output
-function esapo () {
+esapo () {
 	$1 2>&1 | ts "[$log_format]" | tee -a $log_file
 }
 
