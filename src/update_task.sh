@@ -30,6 +30,8 @@ t5=1
 t6=1
 # --> size log
 t7=1
+# --> uptime
+t8=1
 
 active=1
 
@@ -111,6 +113,11 @@ if [ $t0 -eq $active ]; then
 	else
 		pmsgwp "Task 7: Deactivated"
 	fi
+	if [ $t8 -eq $active ]; then
+		pmsgwp "Task 8: Activated"
+	else
+		pmsgwp "Task 8: Deactivated"
+	fi
 fi
 
 # Task 1 => Update System
@@ -163,13 +170,20 @@ if [ $t6 -eq $active ]; then
 	epapo "df -h -x tmpfs"
 fi
 
-log_file
 # Task 7 => Get log size
 if [ $t7 -eq $active ]; then
 	pmsgwp ""
 	pmsg "Task 7: Get log file size"
 	pmsg "Getting log file size at $log_file"
 	epapo "du $log_file -h"
+fi
+
+# Task 8 => Get uptime
+if [ $t8 -eq $active ]; then
+	pmsgwp ""
+	pmsg "Task 8: Get uptime"
+	pmsg "Getting uptime"
+	epapo "uptime"
 fi
 
 pmsg "update_task.sh ended!"
