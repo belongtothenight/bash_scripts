@@ -3,7 +3,7 @@
 # This process can be monitored with "${HOME}/Documents/list_dir.sh"
 # Ref: https://unix.stackexchange.com/questions/26728/prepending-a-timestamp-to-each-line-of-output-from-a-command
 # Req: moreutils
-script_date="2023/12/30-01:11"
+script_date="2024/1/6-01:11"
 
 # Settings
 base_dir="${HOME}/Documents"
