@@ -7,7 +7,6 @@
 script_path="${HOME}/Documents/GitHub/update_task.sh"
 service_name="update_task.service"
 timer_name="update_task.timer"
-user_name="dachuan"
 #sleep_time_min=3
 systemd_service_dir="/lib/systemd/system/${service_name}"
 systemd_timer_dir="/lib/systemd/system/${timer_name}"
@@ -20,7 +19,7 @@ After=multi-user.target\n\
 StartLimitIntervalSec=0\n\
 \n\
 [Service]\n\
-User=$user_name\n\
+User=$USER\n\
 Type=simple\n\
 KillMode=mixed\n\
 #TimeoutSec=$((60 * (sleep_time_min + 1)))

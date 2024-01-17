@@ -2,7 +2,6 @@
 # This script set update_task.sh to run as service with systemd, whenever system boot up
 script_path="${HOME}/Documents/update_task.sh"
 daemon_name="update_task.service"
-user_name="user"
 sleep_time_min=3
 systemd_dir="/lib/systemd/system/${daemon_name}"
 
@@ -14,7 +13,7 @@ After=multi-user.target\n\
 StartLimitIntervalSec=0\n\
 \n\
 [Service]\n\
-User=$user_name\n\
+User=$USER\n\
 Type=simple\n\
 KillMode=mixed\n\
 TimeoutSec=$((60 * (sleep_time_min + 1)))
