@@ -1,20 +1,20 @@
 #!/bin/bash
 
 # PIPELINE
-# 1. Move pictures from source to destination
-# 2. Rename them automatically remove spaces in filename
+# 1. Move pictures from source (no subdirectory) to destination
+# 2. Rename them automatically. (optional) leave original name at the end and remove spaces in filename
 
 # VARIABLES
 
 # -- source path, do not include the last slash at the end
-#SRC="/home/$(whoami)/Pictures"
-SRC="/home/$(whoami)"
+#SRC="/home/$(whoami)"
+SRC="/home/$(whoami)/Pictures"
 # -- destination path, do not include the last slash at the end
-#DST="/run/media/11278041/44AB-5704/ICL/w3/hw3-1"
-DST="/home/$(whoami)"
-# -- filtering filetype, the "dot" is required
+#DST="/home/$(whoami)"
+DST="/run/media/11278041/44AB-5704/ICL/w3/hw3-1"
+# -- filtering filetype, the "dot" at the start is required
 TYP=".png"
-# -- Keep Original Name
+# -- Keep Original Name, "true" or "false"
 KON=false
 # -- Replace original space with this character, only active if $KON is true
 RPC="_"
