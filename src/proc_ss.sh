@@ -21,6 +21,7 @@ RPC="_"
 
 # Help Message
 help () {
+    echo "================================================================================================================================"
     echo "Usage: proc_ss.sh -s=<source_path> -d=<destination_path> -t=<filetype> -k=<keep_original_name_bool> -r=<replace_space_character>"
     echo -e "Options:"
     echo -e "  -s, --source=<source_path>\t\tSource path, do not include the last slash at the end"
@@ -45,6 +46,7 @@ help () {
 #trap '>> failure "$LINENO" "$BASH_COMMAND" "$FUNCNAME" "$BASH_SOURCE"' ERR
 
 # CLI Argument Parsing
+# -- template = "--option=value"
 for i in "$@"; do
     case $i in
         -h|--help)
@@ -71,8 +73,52 @@ for i in "$@"; do
             shift
             ;;
         *)
-            echo ">> Unknown option: $i"
+            #echo ">> Unknown option: $i"
+            #help
+            ;;
+    esac
+done
+# -- template = "--option value"
+POSITIONAL_ARGS=()
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -s|--source)
+            SRC="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        -d|--destination)
+            DST="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        -t|--type)
+            TYP="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        -k|--keep_original_name)
+            KON="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        -r|--replace_space)
+            RPC="$2"
+            shift # past argument
+            shift # past value
+            ;;
+        -s=*|--source=*|-d=*|--destination=*|-t=*|--type=*|-k=*|--keep_original_name=*|-r=*|--replace_space=*)
+            # Previously parsed format
+            shift
+            ;;
+        -*|--*)
+            echo ">> Unknown option: $1"
+            shift
             help
+            ;;
+        *)
+            POSITIONAL_ARGS+=("$1")
+            shift # past argument
             ;;
     esac
 done
