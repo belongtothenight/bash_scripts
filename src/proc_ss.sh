@@ -22,6 +22,7 @@ RPC="_"
 # Help Message
 help () {
     echo "================================================================================================================================"
+    echo "Usage: proc_ss.sh -s <source_path> -d <destination_path> -t <filetype> -k <keep_original_name_bool> -r <replace_space_character>"
     echo "Usage: proc_ss.sh -s=<source_path> -d=<destination_path> -t=<filetype> -k=<keep_original_name_bool> -r=<replace_space_character>"
     echo -e "Options:"
     echo -e "  -s, --source=<source_path>\t\tSource path, do not include the last slash at the end"
@@ -29,6 +30,7 @@ help () {
     echo -e "  -t, --type=<filetype>\t\t\tFiltering filetype, the \"dot\" at the start is required"
     echo -e "  -k, --keep_original_name=<true/false>\tKeep Original Name, \"true\" or \"false\""
     echo -e "  -r, --replace_space=<replace_space_character>\tReplace original space with this character, only active if \"-k\" is true"
+    echo -e "Example: proc_ss.sh -s /home/$(whoami)/Pictures -d /run/media/11278041/44AB-5704/ICL/w3/hw3-1 -t .png -k false -r _"
     echo -e "Example: proc_ss.sh -s=/home/$(whoami)/Pictures -d=/run/media/11278041/44AB-5704/ICL/w3/hw3-1 -t=.png -k=false -r=_"
     exit
 }
