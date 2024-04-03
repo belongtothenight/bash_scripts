@@ -1,42 +1,22 @@
 #!/bin/bash
-# This script set update_task.sh to run as service with systemd, whenever system boot up
-script_path="${HOME}/Documents/update_task.sh"
-daemon_name="update_task.service"
-sleep_time_min=3
-systemd_dir="/lib/systemd/system/${daemon_name}"
+script_path="/opt/boot_trigger.sh"
+auto_start_dir="$HOME/.config/autostart/boot_trigger.desktop"
 
-# Add service to systemd
-sudo bash -c "echo -e \"\
-[Unit]\n\
-Description=automatic startup update script with update_task.sh\n\
-After=multi-user.target\n\
-StartLimitIntervalSec=0\n\
-\n\
-[Service]\n\
-User=$USER\n\
-Type=simple\n\
-KillMode=mixed\n\
-TimeoutSec=$((60 * (sleep_time_min + 1)))
-ExecStartPre=/bin/sleep $((60 * sleep_time_min))
-ExecStart=${script_path}\n\
-\n\
-[Install]\n\
-WantedBy=multi-user.target\n\
-\" > $systemd_dir"
-echo "Added service to systemd: $systemd_dir"
+# Remove previous entry if exists
+if [ -f $auto_start_dir ]; then
+	rm -f $auto_start_dir
+	echo "Removed previous entry"
+fi
 
-# Disable Daemon if exists
-sudo systemctl stop $daemon_name
-echo "Stopped daemon $daemon_name"
-
-# Reload Daemon
-sudo systemctl daemon-reload
-echo "Reloaded systemctl daemon"
-
-# Enable Service
-sudo systemctl enable $daemon_name
-echo "Enabled daemon $daemon_name"
-
-# Start Service
-sudo systemctl start $daemon_name &
-echo "Started daemon $daemon_name"
+# Add desktop entry
+bash -c "echo -e \"\
+[Desktop Entry]\n\
+Type=Application\n\
+Version=1.0\n\
+Name=$(basename $script_path)\n\
+Comment=Auto-Start script for $(basename $script_path)\n\
+Exec=/bin/bash $script_path\n\
+StartupNotify=false\n\
+Terminal=false\n\
+\" > $auto_start_dir"
+echo "Added desktop entry: $auto_start_dir"
