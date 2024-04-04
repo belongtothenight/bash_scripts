@@ -37,7 +37,7 @@ sudo bash -c "echo -e \"\
 Description=timer to schedule update_task.service\n\
 \n\
 [Timer]\n\
-OnCalendar=daily\n\
+OnCalendar=hourly\n\
 #OnBootSec=1m\n\
 #OnUnitActiveSec=1m\n\
 Unit=${service_name}\n\

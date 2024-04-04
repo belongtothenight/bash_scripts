@@ -17,6 +17,6 @@ Name=$(basename $script_path)\n\
 Comment=Auto-Start script for $(basename $script_path)\n\
 Exec=/bin/bash $script_path\n\
 StartupNotify=false\n\
-Terminal=false\n\
+Terminal=true\n\
 \" > $auto_start_dir"
 echo "Added desktop entry: $auto_start_dir"
